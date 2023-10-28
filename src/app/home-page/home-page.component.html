@@ -1,0 +1,37 @@
+<div class="content">
+
+    <div class="header">
+
+    </div>
+
+    <div class="body">
+
+        <div class="left">
+            <div class="intro">
+                <p id="greeting">{{this.greeting.current}}</p>
+                <h1 id="name">
+                    {{this.name.current}}<span *ngIf="this.cursorBlink == true; then thenBlock else elseBlock"></span>
+                    <ng-template #thenBlock><span style="font-size: 80%;">|</span></ng-template>
+                    <ng-template #elseBlock></ng-template>
+                
+                </h1>
+                <h2 id="titles">
+                    <span id="accent-color-blue">{{this.desc.current}}</span>
+                </h2>
+                
+            </div>
+        </div>
+
+        <div class="right">
+            <carousel *ngIf="infoRenderReady"
+                id="info-carousel"
+                [slideContent]="infoContent"
+            />
+        </div>
+
+    </div>
+
+    <div class="footer">
+
+    </div>
+</div>

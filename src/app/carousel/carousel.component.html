@@ -1,0 +1,13 @@
+<div class="content">
+
+    <div class="headers" id="header">
+        <ng-container *ngFor="let header of headers;">
+            <h2 class="header" (click)="selectedHeader(header)">{{header}}</h2>
+        </ng-container>
+    </div>
+
+    <div class="body">
+        <h1 *ngIf="activeSlide">{{activeSlide.content}}</h1>
+    </div>
+
+</div>

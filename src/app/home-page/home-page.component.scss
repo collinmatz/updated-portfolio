@@ -1,0 +1,75 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.header {
+    flex-grow: 1;
+    width: 100%;
+}
+
+.body {
+    display: flex;
+    flex-grow: 6;
+    width: 100%;
+}
+
+.body .left {
+    min-height: 100%;
+    width: 35%;
+    margin-left: 5%;
+}
+
+.intro #name {
+    font-size: 500%;
+    font-weight: lighter;
+    margin-bottom: 0%;
+}
+
+.intro #greeting{
+    font-size: 150%;
+    font-weight: lighter;
+}
+
+.intro #titles {
+    font-size: 175%;
+    font-weight: lighter;
+    margin-top: 0%;
+}
+
+.body .right {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    width: 65%;
+    margin-right: 5%;
+}
+
+.right .navbar {
+    display: flex;
+    height: 10%;
+    min-width: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.right .navbar * {
+    opacity: 25%;
+}
+
+.right .navbar *:hover {
+    cursor: pointer;
+    opacity: 100%;
+}
+
+.right #info-carousel {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.footer {
+    flex-grow: 1;
+    width: 100%;
+}

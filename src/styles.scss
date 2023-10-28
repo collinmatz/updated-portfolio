@@ -1,0 +1,23 @@
+/* downloaded Inter font */
+@font-face {
+    font-family: "Inter";
+    src: url("assets/fonts/Inter/Inter.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+html, body {
+    height: 100%;
+    background-color: #0E131F;
+    font-family: "Inter";
+    color: white
+}
+
+#accent-color-blue {
+    color: #2191FB;
+}
+
+#accent-color-red {
+    color: #E71D36;
+}
