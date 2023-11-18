@@ -1,13 +1,18 @@
 <div class="content">
 
-    <div class="headers" id="header">
+    <div class="headers" id="headers">
         <ng-container *ngFor="let header of headers;">
-            <h2 class="header" (click)="selectedHeader(header)">{{header}}</h2>
+            <h2 id="header" (click)="selectedHeader(header, $event)">{{header}}</h2>
         </ng-container>
     </div>
 
     <div class="body">
-        <h1 *ngIf="activeSlide">{{activeSlide.content}}</h1>
+        <div *ngIf="activeSlide">
+            <ng-container *ngFor="let content of activeSlide.content;">
+                <div innerHtml="{{content}}" id="bodyContent"></div>
+                <br>
+            </ng-container>
+        </div>
     </div>
 
 </div>

@@ -10,7 +10,7 @@ import { Slide } from './slide';
 
 export class CarouselComponent {
 
-  @Input("slideContent") slideContent?: Map<string, string>;
+  @Input("slideContent") slideContent?: Map<string, string[]>;
 
   headers: string[] = [];
   slidesMap: Map<string, Slide> = new Map<string, Slide>();
@@ -24,11 +24,17 @@ export class CarouselComponent {
         this.headers.push(header);
         this.slidesMap.set(header, new Slide(content));
       }
-      this.activeSlide = this.slidesMap.get(this.headers[0]);
     }
   }
 
-  selectedHeader(header: string) {
+  selectedHeader(header: string, event: Event) {
     this.activeSlide = this.slidesMap.get(header);
+
+    // set this header opacity to 100%, set all others back to default
+    for (let child of document.getElementById("headers")!.children) {
+      child.id = "header";
+    }
+
+    (event!.target as HTMLElement).id = "activeHeader";
   }
 }

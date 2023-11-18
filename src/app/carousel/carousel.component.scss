@@ -1,6 +1,7 @@
 .content {
     height: 100%;
-    min-width: 100%;
+    width: 60%;
+    position: absolute;
 }
 
 .headers {
@@ -9,42 +10,85 @@
 }
 
 @keyframes headerFadeIn {
-    0% { opacity: 0%; scale: 0; }
-    50% { opacity: 10%; scale: 0.5; }
-    100% { opacity: 25%; scale: 1; }
+    0% { scale: 0; }
+    50% { scale: 0.5; }
+    100% { scale: 1; }
 }
 
+// set animation delay for header rendering
 @for $i from 1 through 3 {
     .headers :nth-child(#{$i}) {
         animation-delay: #{($i - 1) * 0.075}s; 
     }
 }
 
-.header {
-    opacity: 0%;
+@keyframes contentHoverGlimmer {
+    0% {border-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1) 30;}
+    13% {border-image: linear-gradient(to right, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1) 30;}
+    25% {border-image: linear-gradient(to right bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1) 30;}
+    38% {border-image: linear-gradient(to bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1) 30;}
+    50% {border-image: linear-gradient(to left bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1) 30;}
+    63% {border-image: linear-gradient(to left, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1) 30;}
+    75% {border-image: linear-gradient(to left top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1) 30;}
+    78% {border-image: linear-gradient(to top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1) 30;}
+    100% {border-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1) 30;}
+}
+
+.body {
+    justify-content: center;
+    height: 70%;
+    overflow: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+// scrollbar chrome, safari, opera
+.body::-webkit-scrollbar {
+    display: none;
+}
+
+#header {
+    opacity: 25%;
+    scale: 0;
     animation: headerFadeIn 0.25s linear;
     animation-fill-mode: forwards;
 }
 
-.header:hover {
+#activeHeader {
+    opacity: 100%;
+    scale: 0;
+    animation: headerFadeIn 0.25s linear;
+    animation-fill-mode: forwards;
+}
+
+#header:hover {
     cursor: pointer;
     opacity: 100%;
+    text-decoration: underline;
+    color: #2191FB;
+    transition-duration: 0.25s;
+    transform: scale(1.25);
+} 
+
+#activeHeader:hover {
+    cursor: pointer;
+} 
+
+#bodyContent {
+    display: flex;
+    font-size: large;
+    line-height: 165%;
+    border: 2px solid white;
+    padding: 3%;
+    opacity: 25%;
+    transition-duration: 0.25s;
+    justify-content: center;
 }
 
-.body {
-    position: absolute;
-    margin-right: 5%;
-    text-align: center;
-}
-
-@keyframes bodyFadeIn {
-    0% { opacity: 0%; }
-    50% { opacity: 250%;}
-    100% { opacity: 100%; }
-}
-
-.body {
-    opacity: 0%;
-    animation: bodyFadeIn 2s linear;
-    animation-fill-mode: forwards;
+#bodyContent:hover {
+    opacity: 100%;
+    cursor: pointer;
+    border-width: 2px;
+    border-style: solid;
+    animation: contentHoverGlimmer 2s linear infinite;
 }

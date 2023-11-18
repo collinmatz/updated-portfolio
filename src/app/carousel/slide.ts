@@ -1,8 +1,8 @@
 export class Slide {
     isActive: boolean = false;
-    content: string;
+    content: string[] = [];
 
-    constructor(content: string) {
+    constructor(content: string[]) {
         this.content = content;
     }
 }
