@@ -1,7 +1,13 @@
 <div class="content">
 
     <div class="header">
-        <img src="../../assets/settings-wheel.png"/>
+        <img #refEl (click)="toggleSettings(refEl)" src="../../assets/settings-wheel.png"/>
+        <settings
+            *ngIf="settingsVisible"
+            id="settings" 
+            [options]="settingsOptions"
+            (toggleState)="toggleSettingState($event)"
+        />
     </div>
 
     <div class="body">
@@ -13,17 +19,20 @@
                     {{this.name.current}}<span *ngIf="this.cursorBlink == true; then thenBlock else elseBlock"></span>
                     <ng-template #thenBlock><span style="font-size: 80%;">|</span></ng-template>
                     <ng-template #elseBlock></ng-template>
-                
                 </h1>
+
                 <h2 id="titles">
-                    <span id="accent-color-blue">{{this.desc.current}}</span>
+                    <span id="job-title" class="accent-color-blue">{{this.desc.current}}</span>
                 </h2>
+                
+                <p>{{this.tagline.current}}</p>
                 
             </div>
         </div>
 
         <div class="right">
-            <carousel *ngIf="infoRenderReady"
+            <carousel 
+                *ngIf="infoRenderReady"
                 id="info-carousel"
                 [slideContent]="infoContent"
             />
@@ -31,7 +40,7 @@
 
     </div>
 
-    <div class="footer">
+    <div id="footer">
         <p>Collin Matz - {{this.currentYear}}</p>
     </div>
 </div>

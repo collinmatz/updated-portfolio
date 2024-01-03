@@ -1,0 +1,16 @@
+<div class="container">
+
+    <div *ngFor="let toggle of toggles;" class="slider-container">
+        <label class="switch">
+
+            <span *ngIf="this.toggle.state == true; then thenBlock else elseBlock"></span>
+            <ng-template #thenBlock><input (change)="checkBoxToggled(toggle)" type="checkbox" checked></ng-template>
+            <ng-template #elseBlock><input (change)="checkBoxToggled(toggle)" type="checkbox"></ng-template>
+
+            
+            <span class="slider round"></span>
+        </label>
+        <p>{{toggle.title}}</p>
+    </div>
+
+</div>

@@ -14,6 +14,10 @@ export class HomePageComponent {
   greeting: TypeWriter;
   name: TypeWriter;
   desc: TypeWriter;
+  tagline: TypeWriter;
+
+  taglines: String[];
+
   currentYear: number;
 
   blinkSubscribe: Subscription;
@@ -22,17 +26,28 @@ export class HomePageComponent {
   infoContent: Map<string, string[]>;
   infoRenderReady: boolean = false;
 
+  settingsVisible: boolean;
+  settingsOptions: Map<string, boolean>;
+
   constructor() {
 
     this.greeting = new TypeWriter("", "Hey There,", 65);
     this.name = new TypeWriter("", "I'm Collin", 45);
     this.desc = new TypeWriter("", "Software Developer, Fusion Engineer", 25);
 
+    // extra tagline, randomly select from preset list
+    this.taglines = [
+      "Passionate for creating cool taglines",
+      "Chess Grandmaster (Not Really)",
+    ];
+    this.tagline = new TypeWriter("- ", this.getTagline(), 50);
+
     this.currentYear = new Date().getFullYear()
 
     this.greeting.write();
     this.name.write();
     this.desc.write();
+    this.tagline.write();
 
     this.blinkSubscribe = interval(500).subscribe(() => {
       this.blink();
@@ -57,7 +72,17 @@ export class HomePageComponent {
       ]],
     ]);
 
+    this.settingsVisible = false;
+    this.settingsOptions = new Map([
+      ["Dark Mode", true],
+    ]);
+
     this.showInfo();
+  }
+
+  getTagline() {
+    let idx = Math.floor(Math.random() * this.taglines.length)
+    return this.taglines[idx];
   }
 
   async blink() {
@@ -69,5 +94,44 @@ export class HomePageComponent {
   async showInfo() {
     await sleep(1200);
     this.infoRenderReady = true;
+  }
+
+  // callbacks
+  toggleSettings(element: HTMLElement) {
+    this.settingsVisible = !this.settingsVisible;
+
+    // and he's spinning the wheeeeeel
+    if (this.settingsVisible) {
+      element.style.transform = "rotate(180deg)";
+    }
+    else {
+      element.style.transform = "rotate(0deg)";
+    }
+  }
+
+  toggleSettingState(event: Map<string, boolean>) {
+    // update the setting in the parent view
+    for (const [key, value] of event.entries()) {
+      this.settingsOptions.set(key, value);
+    }
+    
+    // update necessary settings
+    for (const [setting, state] of this.settingsOptions.entries()) {
+      switch(setting) {
+        case "Dark Mode":
+          if (state) {
+            document.documentElement.className = "dark";
+            document.getElementById("footer")!.style.color = "white";
+            document.getElementById("job-title")!.className = "accent-color-blue";
+          }
+          else {
+            document.documentElement.className = "light";
+            document.getElementById("footer")!.style.color = "#0E131F";
+            document.getElementById("footer")!.style.opacity = "75%";
+            document.getElementById("job-title")!.className = "accent-color-red";
+          }
+      }
+    }
+
   }
 }

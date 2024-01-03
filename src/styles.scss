@@ -7,7 +7,7 @@
 }
 
 
-html, body {
+html {
     height: 100%;
     background-color: #0E131F;
     font-family: "Inter";
@@ -15,11 +15,27 @@ html, body {
     overflow: hidden;
 }
 
-#accent-color-blue {
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.dark {
+    background-color: #0E131F;
+    color: white;
+}
+
+.light {
+    background-color: white;
+    color: #0E131F;
+}
+
+
+.accent-color-blue {
     color: #2191FB;
 }
 
-#accent-color-red {
+.accent-color-red {
     color: #E71D36;
 }
 

@@ -2,7 +2,7 @@
 
     <div class="headers" id="headers">
         <ng-container *ngFor="let header of headers;">
-            <h2 id="header" (click)="selectedHeader(header, $event)">{{header}}</h2>
+            <h2 id="header" class="header-dark" (click)="selectedHeader(header, $event)">{{header}}</h2>
         </ng-container>
     </div>
 

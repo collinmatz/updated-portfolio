@@ -24,7 +24,28 @@
 
 .header img:hover {
     cursor: pointer;
+}
+
+.header-img-toggled {
     transform: rotate(180deg);
+}
+
+@keyframes settingsFade {
+    0% { opacity: 0%; }
+    50% { opacity: 50%; }
+    100% { opacity: 100%; }
+}
+
+#settings {
+    position: absolute;
+    width: 15%;
+    height: fit-content;
+    z-index: 1;
+    translate: 0% 75%;
+    animation: settingsFade 0.1s linear;
+    background-color: whitesmoke;
+    border: 2px solid gray;
+    border-radius: 1em;
 }
 
 .body {
@@ -63,7 +84,7 @@
     margin-right: 5%;
 }
 
-.footer {
+#footer {
     display: flex;
     flex-grow: 1;
     width: 100%;
